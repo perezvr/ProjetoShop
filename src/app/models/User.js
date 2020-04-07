@@ -32,6 +32,10 @@ class User extends Model {
     return this;
   }
 
+  static associate(models) {
+    this.belongsTo(models.File, { foreignKey: 'avatar_id' });
+  }
+
   // Método de checagem de senha para o usuário, passando o password
   checkPassword(password) {
     // Comparando senha digitada pelo usuário com seu hash.
