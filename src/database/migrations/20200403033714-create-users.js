@@ -25,6 +25,7 @@ module.exports = {
         defaultValue: false,
         allowNull: false,
       },
+      // Esses campos são gerenciados automaticamente
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

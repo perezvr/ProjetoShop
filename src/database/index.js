@@ -7,11 +7,14 @@ import Appointment from '../app/models/Appointment';
 
 import databaseConfig from '../config/database';
 
+// Definindo todos os models
 const models = [User, File, Appointment];
 
 class Database {
   constructor() {
+    // Iniciando o banco relacional
     this.init();
+    // Iniciando o mongo
     this.mongo();
   }
 
@@ -27,11 +30,13 @@ class Database {
   }
 
   mongo() {
+    // Definindo a configuração para utilização do mongoDB pela aplicação
     this.mongoConnection = mongoose.connect(
       'mongodb://localhost:27017/gobarber',
       {
         useNewUrlParser: true,
         useFindAndModify: true,
+        // Para previnir warning de método depreciado
         useUnifiedTopology: true,
       }
     );

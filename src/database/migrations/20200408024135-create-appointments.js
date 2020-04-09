@@ -11,6 +11,7 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
+      // Criando relacionamento com User (cliente)
       user_id: {
         type: Sequelize.INTEGER,
         references: { model: 'users', key: 'id' },
@@ -18,6 +19,7 @@ module.exports = {
         onDelete: 'SET NULL ',
         allowNull: true,
       },
+      // Criando relacionamento com User (provider)
       provider_id: {
         type: Sequelize.INTEGER,
         references: { model: 'users', key: 'id' },
