@@ -7,6 +7,7 @@ class File extends Model {
         name: Sequelize.STRING,
         path: Sequelize.STRING,
         url: {
+          // Campo virtual para retornar o path completo de onde está o file no disco
           type: Sequelize.VIRTUAL,
           get() {
             return `http://localhost:3333/files/${this.path}`;

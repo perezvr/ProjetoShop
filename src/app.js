@@ -14,6 +14,8 @@ class App {
 
   middlewares() {
     this.server.use(express.json());
+    // Criando uma rota para o static e definindo um caminho
+    // express.static => Recurso que serve arquivos para o frontend
     this.server.use(
       '/files',
       express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))

@@ -25,6 +25,10 @@ routes.get('/providers', ProviderController.index);
 
 routes.post('/appointments', AppointmentController.store);
 
+// Essa rota chama o middleware de upload do conteúdo passado como Multpart
+// Form da requisição ('file') através das configurações definidas no Config/Multer.js
+// Após isso, chama o método de gravação do arquivo no banco de dados
+// Nesse caso o multer libera uma variável req.file para ser tratada pelo controller
 routes.post('/files', upload.single('file'), FileController.store);
 
 export default routes;
