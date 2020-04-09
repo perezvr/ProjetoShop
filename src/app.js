@@ -22,6 +22,7 @@ class App {
     );
   }
 
+  // Definfindo as rotas do servidor
   routes() {
     this.server.use(routes);
   }
