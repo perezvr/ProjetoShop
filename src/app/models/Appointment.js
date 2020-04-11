@@ -17,9 +17,11 @@ class Appointment extends Model {
     return this;
   }
 
-  // Efetuando a assiciação dos models
-  // Quando faz associação mais de uma vez com o mesmo model (User),
-  // é obrigatório utilizar o alias
+  /**
+   * Efetuando a assiciação dos models
+   * Quando faz associação mais de uma vez com o mesmo model (User),
+   * é obrigatório utilizar o alias
+   */
   static associate(models) {
     this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
     this.belongsTo(models.User, { foreignKey: 'provider_id', as: 'provider' });

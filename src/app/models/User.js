@@ -34,8 +34,10 @@ class User extends Model {
 
   // Método cria o relacionamento do model file com user
   static associate(models) {
-    // belongsTo => Define que teremos um objeto de file em user, referenciando
-    // o campo avatar_id com alias: 'avatar'
+    /**
+     * belongsTo => Define que teremos um objeto de file em user, referenciando
+     * o campo avatar_id com alias: 'avatar'
+     */
     this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
   }
 

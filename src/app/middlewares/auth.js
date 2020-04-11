@@ -19,15 +19,19 @@ export default async (req, res, next) => {
   const [, token] = authHeader.split(' ');
 
   try {
-    // Para utilizar o jwt como uma função assíncrona, precisamos utilizar o Promisify
-    // Que nos permite utilizar a opção de await ao invés de trabalhar com uma sintaxe antiga de callBack
-    // await promisify(jwt.verify) => Retorna uma funcão passando a função de verify como parâmetro
-    // (token, authConfig.secret) => Parâmetros passados para a função retornada
+    /**
+     * Para utilizar o jwt como uma função assíncrona, precisamos utilizar o Promisify
+     * Que nos permite utilizar a opção de await ao invés de trabalhar com uma sintaxe antiga de callBack
+     * await promisify(jwt.verify) => Retorna uma funcão passando a função de verify como parâmetro
+     * (token, authConfig.secret) => Parâmetros passados para a função retornada
+     */
     const decoded = await promisify(jwt.verify)(token, authConfig.secret);
 
-    // Retorando o id do User logado que foi gravado no token na função jwt.sign().
-    // Com isso não é preciso incluir o id como parâmetro da requisição, pois ele já se encontra no token
-    // Incluímos essa informação na requisição para podermos usar futuramente
+    /**
+     * Retorando o id do User logado que foi gravado no token na função jwt.sign().
+     * Com isso não é preciso incluir o id como parâmetro da requisição, pois ele já se encontra no token
+     * Incluímos essa informação na requisição para podermos usar futuramente
+     */
     req.userId = decoded.id;
 
     return next();

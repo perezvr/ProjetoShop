@@ -31,8 +31,11 @@ class UserController {
     // Chamada para a gravação do User no db
     const { id, name, email, provider } = await User.create(req.body);
 
-    // Essa é a estrutura que será retornada para a requisição
-    // Passamos somente os campos que a aplicação cliente deve obter
+    /**
+     * Essa é a estrutura que será retornada para a requisição
+     * Passamos somente os campos que a aplicação cliente deve obter
+     */
+
     return res.json({
       id,
       name,
@@ -51,8 +54,10 @@ class UserController {
       email: Yup.string().email(),
       // oldPassword não é obrigatório
       oldPassword: Yup.string().min(6),
-      // Novo Password de no mínimo 6 caracteres e, quando o oldPassword tiver
-      // sido preenchido, o campo se torna obrigatório
+      /**
+       * Novo Password de no mínimo 6 caracteres e, quando o oldPassword tiver
+       * sido preenchido, o campo se torna obrigatório
+       */
       password: Yup.string()
         .min(6)
         // .when('campoASerVerificado',
@@ -63,8 +68,10 @@ class UserController {
         ),
       // Defininfo o confirmPassword obrigatório caso o password seja passado
       confirmPassword: Yup.string().when('password', (password, field) =>
-        // Caso haja password o oneOf() verifica todos os valores possíveis
-        // Yup.ref('password') passando como valor a ser comparado o 'password'
+        /**
+         * Caso haja password o oneOf() verifica todos os valores possíveis
+         * Yup.ref('password') passando como valor a ser comparado o 'password'
+         */
         password ? field.required().oneOf([Yup.ref('password')]) : field
       ),
     });
@@ -79,8 +86,10 @@ class UserController {
     // Buscando usuário pelo id
     const user = await User.findByPk(req.userId);
 
-    // Caso estejamos alterando o email verificamos se já não está
-    // sendo usado por outro user
+    /**
+     * Caso estejamos alterando o email verificamos se já não está sendo usado
+     *  por outro user
+     */
     if (email !== user.email) {
       // Verificando no banco se já existe algum user com o mesmo email (coluna unique)
       const userExists = await User.findOne({ where: { email } });
@@ -92,14 +101,18 @@ class UserController {
       }
     }
 
-    // Verificando se o antigo password foi passado corretamente, porém somente
-    // se o oldPassword ofi informado
+    /**
+     * Verificando se o antigo password foi passado corretamente, porém somente
+     * se o oldPassword ofi informado
+     */
     if (oldPassword && !(await user.checkPassword(oldPassword))) {
       return res.status(401).json({ error: 'Password does not match' });
     }
 
-    // Atualizando as informações do usuário e retornando somente id, name e
-    // provider para o responser
+    /**
+     * Atualizando as informações do usuário e retornando somente id, name e
+     * provider para o responser
+     */
     const { id, name, provider } = await user.update(req.body);
 
     // Retornando informações no response
