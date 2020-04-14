@@ -1,7 +1,15 @@
 import * as Yup from 'yup';
 // Funções de manipulação de data
-import { startOfHour, parseISO, isBefore, format, subHours } from 'date-fns';
+import {
+  startOfHour,
+  endOfHour,
+  parseISO,
+  isBefore,
+  format,
+  subHours,
+} from 'date-fns';
 import pt from 'date-fns/locale/pt';
+import { Op } from 'sequelize';
 import Appointment from '../models/Appointment';
 import User from '../models/User';
 import File from '../models/File';
@@ -83,6 +91,7 @@ class AppointmentController {
     // Manipula o date. => startOfHour pega a data com somente a hora, deixando
     // de lado minutos e segundos
     const hourStart = startOfHour(parseISO(date));
+    const hourEnd = endOfHour(parseISO(date));
 
     // New Date() => Retorna a data/hora atual
     // Validação não permite que sejam criados appointments com datas já
@@ -98,7 +107,9 @@ class AppointmentController {
       where: {
         provider_id,
         canceled_at: null,
-        date: hourStart,
+        date: {
+          [Op.between]: [hourStart, hourEnd],
+        },
       },
     });
 
