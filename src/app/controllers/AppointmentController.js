@@ -29,7 +29,7 @@ class AppointmentController {
       // Ordenação da query
       order: ['date'],
       // Selecionando somente os atributos necessários
-      attributes: ['id', 'date'],
+      attributes: ['id', 'date', 'past', 'cancelable'],
       // Limite por página
       limit: 20,
       // Definindo o skip para paginação

@@ -31,15 +31,12 @@ class Database {
 
   mongo() {
     // Definindo a configuração para utilização do mongoDB pela aplicação
-    this.mongoConnection = mongoose.connect(
-      'mongodb://localhost:27017/gobarber',
-      {
-        useNewUrlParser: true,
-        useFindAndModify: true,
-        // Para previnir warning de método depreciado
-        useUnifiedTopology: true,
-      }
-    );
+    this.mongoConnection = mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useFindAndModify: true,
+      // Para previnir warning de método depreciado
+      useUnifiedTopology: true,
+    });
   }
 }
 
