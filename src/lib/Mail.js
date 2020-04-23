@@ -8,10 +8,12 @@ class Mail {
   constructor() {
     const { host, port, secure, auth } = mailconfig;
 
+    // Criando a conexão do servidor de email para o nodemailer
     this.transporter = nodemailer.createTransport({
       host,
       port,
       secure,
+      // Verificando se há a necessidade de autenticação para o envio do email
       auth: auth.user ? auth : null,
     });
 
@@ -38,7 +40,9 @@ class Mail {
 
   sendMail(message) {
     return this.transporter.sendMail({
+      // Definindo o remetente
       ...mailconfig.default,
+      // Definindo a mensagem
       ...message,
     });
   }

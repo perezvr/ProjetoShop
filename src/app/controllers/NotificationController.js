@@ -24,13 +24,14 @@ class NotificationController {
 
   async update(req, res) {
     const notification = await Notification.findByIdAndUpdate(
+      // Buscando a notification pelo id
       req.params.id,
+      // Segundo parâmetro com os campos que serão alterados
       {
         read: true,
       },
       /**
        * Necessário informar o new: true para devolver o registro já atualizado
-      para o notifications
        */
       { new: true }
     );

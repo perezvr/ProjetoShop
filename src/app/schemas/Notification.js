@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 
+/**
+ * Criando schema para as notificações da aplicacao
+ */
 const NotificationSchema = new mongoose.Schema(
   {
     content: {
@@ -17,6 +20,9 @@ const NotificationSchema = new mongoose.Schema(
     },
   },
   {
+    /**
+     * Cria os campos created_at e updated_at automaticamente
+     */
     timestamps: true,
   }
 );

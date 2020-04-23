@@ -126,12 +126,18 @@ class AppointmentController {
       date,
     });
 
-    // Crindo notificação para prestador de serviço
-
+    /**
+     * Buscando usuário pelo id do request para pegar o nome
+     */
     const user = await User.findByPk(req.userId);
+
+    /**
+     * Formatando a data
+     */
     const formattedDate = format(
       hourStart,
       "'dia' dd 'de' MMMM', às' H:mm'h'",
+      // Para pegar o nome do mês em português
       { locale: pt }
     );
 

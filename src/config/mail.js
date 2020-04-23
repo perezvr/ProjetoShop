@@ -1,3 +1,6 @@
+/**
+ * Definindo as propriedades do servidor SMTP para o envio de emails
+ */
 export default {
   host: process.env.MAIL_HOST,
   port: process.env.MAIL_PORT,
