@@ -9,7 +9,7 @@ class FileController {
      */
     const { originalname: name, filename: path } = req.file;
 
-    // Gravação do file no db
+    /* Gravação do file no db */
     const file = await File.create({
       name,
       path,
