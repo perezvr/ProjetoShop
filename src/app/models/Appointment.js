@@ -26,7 +26,7 @@ class Appointment extends Model {
       }
     );
 
-    // Retornando o usuário
+    // Retornando o appointment
     return this;
   }
 
