@@ -32,7 +32,7 @@ class Appointment extends Model {
 
   /**
    * Efetuando a assiciação dos models
-   * Quando faz associação mais de uma vez com o mesmo model (User),
+   * Quando faz associação mais de uma vez com o mesmo model (Appointment),
    * é obrigatório utilizar o alias
    */
   static associate(models) {
