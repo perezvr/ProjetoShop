@@ -20,7 +20,7 @@ class File extends Model {
       }
     );
 
-    // Retornando o usuário
+    // Retornando o File
     return this;
   }
 }
