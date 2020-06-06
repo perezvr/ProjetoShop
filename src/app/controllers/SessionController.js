@@ -5,7 +5,11 @@ import authConfig from '../../config/auth';
 import User from '../models/User';
 
 class SessionController {
-  // Create session
+  /**
+   * Cria uma session
+   * @param req request
+   * @param res response
+   */
   async store(req, res) {
     const schema = Yup.object().shape({
       email: Yup.string().email().required(),
